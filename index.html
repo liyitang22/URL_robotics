@@ -11,6 +11,19 @@
 main{padding:12px 0 52px}.topic{display:grid;grid-template-columns:235px minmax(0,1fr);gap:54px;padding:39px 0 37px;border-bottom:1px solid var(--line);scroll-margin-top:18px}.topic-head{padding-top:3px}.section-kicker{display:block;margin-bottom:9px;color:var(--teal);font-size:10px;font-weight:700}.topic h2{margin:0;color:var(--pine);font-size:25px;font-weight:500;line-height:1.22}.topic-note{max-width:225px;margin:11px 0 0;color:var(--muted);font-size:13px;line-height:1.55}.items{min-width:0;counter-reset:paper}.paper{display:grid;grid-template-columns:30px minmax(0,1fr);column-gap:14px;padding:0 0 21px;margin:0 0 19px;border-bottom:1px solid var(--line)}.paper:last-child{padding-bottom:0;margin-bottom:0;border:0}.paper:before{counter-increment:paper;content:counter(paper,decimal-leading-zero);padding-top:3px;color:#a99da2;font:11px/1.5 Arial,Helvetica,sans-serif}.paper h3{margin:0;color:#4e3b45;font-size:18px;font-weight:600;line-height:1.4}.paper-meta{margin:5px 0 7px;color:#877b81;font-size:11px;line-height:1.5}.summary{max-width:700px;margin:0;color:#65585f;font-size:14px;line-height:1.58}.links{display:flex;flex-wrap:wrap;gap:0;margin-top:9px;font-size:11px;font-weight:700}.links a{display:inline-block;padding-right:14px;margin-right:13px;text-decoration:none;border-bottom:1px solid #dfcbd2}.links a:hover{border-color:var(--coral)}.group-title{margin:25px 0 14px;color:var(--coral);font:700 11px/1.4 Arial,Helvetica,sans-serif}.group-title:first-child{margin-top:0}
 #foundations .section-kicker{color:var(--teal)}#animation .section-kicker{color:var(--coral)}#wbc .section-kicker{color:var(--blue)}#applications .section-kicker{color:var(--gold)}#discussion .section-kicker{color:var(--lilac)}footer{padding:18px 0 32px;color:#82777d;font-size:11px;border-top:1px solid var(--line)}
 @media(max-width:760px){.wrap{width:min(100% - 34px,620px)}.hero{padding:34px 0 25px}h1{font-size:39px}.nav{gap:0 18px;padding:8px 0}.nav a{min-height:34px;padding:0;margin:0 8px 0 0}.topic{grid-template-columns:1fr;gap:17px;padding:30px 0}.topic-head{display:grid;grid-template-columns:1fr;gap:0}.topic h2{font-size:23px}.topic-note{max-width:460px;margin-top:7px}.paper{grid-template-columns:24px minmax(0,1fr);column-gap:10px}.paper h3{font-size:17px}}
+
+:root{--ink:#654957;--muted:#a18491;--line:#f3dce6;--paper:#fff8fc;--white:#fffdfd;--pine:#fff0f6;--teal:#c86f98;--coral:#e7a2bd;--gold:#c98da8;--blue:#b68da8;--lilac:#c18cab}
+body{background:var(--paper);color:var(--ink)}
+a{color:#bf648e}a:hover{color:#df82a8}
+.masthead{background:#ffeaf3;color:#69475a;border-bottom:4px solid #f5cddd;position:relative;overflow:hidden}
+.masthead:after{content:"\2661   \2727   \2661";position:absolute;right:max(26px,calc((100vw - 1100px)/2));top:26px;color:#edbed0;font:22px/1 Arial,sans-serif;letter-spacing:12px;opacity:.78;pointer-events:none}
+.hero{padding:48px 0 34px}.eyebrow{color:#b77b96}.eyebrow:before{background:#dc91b0;width:22px;border-radius:9px}
+h1{color:#754c62}.intro{color:#927082}.nav-wrap{border-top:1px solid #f3d2e0}.nav{min-height:58px;gap:8px;align-items:center}.nav a{min-height:35px;padding:0 13px;margin:0;color:#885d73;background:rgba(255,255,255,.7);border:1px solid #f3d5e2;border-radius:999px;transition:background .18s ease,transform .18s ease}.nav a:hover{color:#76445d;background:#fff;border-color:#e8a9c3;transform:translateY(-1px)}.nav b{color:#cd83a2}
+main{padding-top:10px}.topic{gap:48px;padding:39px 0 38px;border-bottom:1px dashed #edcfdd}.section-kicker{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;margin-bottom:12px;color:#b65f88;background:#fff0f6;border:1px solid #f5dce7;border-radius:999px;font-size:10px;letter-spacing:.2px}.section-kicker:after{content:"\2661";font-size:12px;color:#df92b0}.topic h2{color:#8c5871}.topic-note{color:#9b8290}
+.paper{padding:14px 15px 16px;margin:0 0 12px;background:#fffdfd;border:1px solid #f4e1e9;border-radius:12px;box-shadow:0 3px 12px rgba(174,106,139,.055)}.paper:last-child{border:1px solid #f4e1e9}.paper:before{color:#d28ba8}.paper h3{color:#68485a}.summary{color:#826d78}.links{gap:7px;margin-top:11px}.links a{padding:3px 10px;margin:0;color:#a84f78;background:#fff2f7;border:1px solid #f1d3e0;border-radius:999px;text-decoration:none}.links a:hover{background:#ffe7f0;border-color:#e7a5be}.group-title{display:table;padding:4px 10px;margin:20px 0 11px;color:#b3698d;background:#ffeff5;border-radius:999px}
+#foundations .section-kicker,#animation .section-kicker,#wbc .section-kicker,#applications .section-kicker,#discussion .section-kicker{color:#b65f88}
+footer{color:#a18491;border-top:1px dashed #edcfdd}footer:after{content:"  \2661";color:#d783a5}
+@media(max-width:760px){.masthead:after{right:18px;top:17px;font-size:17px}.hero{padding:39px 0 27px}.nav{gap:7px;padding:10px 0}.nav a{padding:0 11px}.topic{gap:16px;padding:29px 0}.paper{padding:13px 12px}.section-kicker{margin-bottom:9px}}
 </style>
 </head>
 <body>
@@ -24,6 +37,38 @@ main{padding:12px 0 52px}.topic{display:grid;grid-template-columns:235px minmax(
 </main><footer class="wrap">A living map of unsupervised reinforcement learning and behavioral foundation models.</footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
