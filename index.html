@@ -1,183 +1,27 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A reading map of unsupervised reinforcement learning and behavioral foundation models for humanoid robotics.">
-  <title>Unsupervised RL for Humanoid Robotics</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #172b3a;
-      --muted: #687780;
-      --line: #dce4e6;
-      --paper: #fbfcfa;
-      --blue: #27667a;
-      --coral: #ba5d46;
-      --green: #477967;
-      --gold: #a97825;
-      --violet: #70618b;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font: 16px/1.65 Georgia, "Times New Roman", serif;
-    }
-    a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-    a:hover { color: var(--coral); }
-    .wrap { width: min(1080px, calc(100% - 48px)); margin: 0 auto; }
-    header { padding: 58px 0 38px; border-bottom: 1px solid var(--line); }
-    .eyebrow, .section-kicker, .links, nav, footer { font-family: Arial, Helvetica, sans-serif; }
-    .eyebrow { color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase; }
-    h1 { max-width: 760px; margin: 14px 0 12px; font-size: clamp(34px, 5vw, 54px); line-height: 1.08; font-weight: 500; }
-    .intro { max-width: 650px; margin: 0; color: var(--muted); font-size: 18px; }
-    nav { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 27px; font-size: 13px; }
-    nav a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; }
-    nav a:hover { border-color: currentColor; }
-    main { padding: 14px 0 58px; }
-    .topic { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 34px; padding: 34px 0 30px; border-bottom: 1px solid var(--line); scroll-margin-top: 18px; }
-    .topic-head { padding-top: 2px; }
-    .section-kicker { display: block; margin-bottom: 7px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; }
-    h2 { margin: 0; font-size: 23px; line-height: 1.25; font-weight: 500; }
-    .topic-note { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
-    .items { min-width: 0; }
-    article { padding: 0 0 22px; margin: 0 0 21px; border-bottom: 1px solid #e7ecec; }
-    article:last-child { padding-bottom: 0; margin-bottom: 0; border: 0; }
-    h3 { margin: 0; font-size: 18px; line-height: 1.42; font-weight: 600; }
-    .venue { margin: 4px 0 7px; color: var(--muted); font: 12px/1.5 Arial, Helvetica, sans-serif; }
-    .summary { max-width: 690px; margin: 0; color: #3e505b; font-size: 15px; }
-    .links { display: flex; flex-wrap: wrap; gap: 7px 16px; margin-top: 10px; font-size: 12px; font-weight: 700; }
-    .links a { text-decoration: none; }
-    #foundations .section-kicker { color: var(--blue); }
-    #animation .section-kicker { color: var(--coral); }
-    #wbc .section-kicker { color: var(--green); }
-    #applications .section-kicker { color: var(--gold); }
-    #tracking .section-kicker { color: var(--violet); }
-    footer { padding: 20px 0 36px; color: var(--muted); font-size: 12px; }
-    @media (max-width: 700px) {
-      .wrap { width: min(100% - 34px, 1080px); }
-      header { padding-top: 38px; }
-      .topic { grid-template-columns: 1fr; gap: 15px; padding: 27px 0; }
-      .topic-note { max-width: 500px; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A reading map of unsupervised reinforcement learning and behavioral foundation models for humanoid robotics.">
+<title>Unsupervised RL for Humanoid Robotics</title>
+<style>
+:root{color-scheme:light;--ink:#172b3a;--muted:#687780;--line:#dce4e6;--paper:#fbfcfa;--blue:#27667a;--coral:#ba5d46;--green:#477967;--gold:#a97825;--violet:#70618b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 Georgia,"Times New Roman",serif}a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}a:hover{color:var(--coral)}
+.wrap{width:min(1080px,calc(100% - 48px));margin:0 auto}header{padding:58px 0 38px;border-bottom:1px solid var(--line)}.eyebrow,.section-kicker,.links,nav,footer{font-family:Arial,Helvetica,sans-serif}.eyebrow{color:var(--blue);font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase}h1{max-width:760px;margin:14px 0 12px;font-size:46px;line-height:1.08;font-weight:500}.intro{max-width:650px;margin:0;color:var(--muted);font-size:18px}nav{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:27px;font-size:13px}nav a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent}nav a:hover{border-color:currentColor}
+main{padding:14px 0 58px}.topic{display:grid;grid-template-columns:220px minmax(0,1fr);gap:34px;padding:34px 0 30px;border-bottom:1px solid var(--line);scroll-margin-top:18px}.topic-head{padding-top:2px}.section-kicker{display:block;margin-bottom:7px;font-size:11px;font-weight:700;letter-spacing:1.5px}h2{margin:0;font-size:23px;line-height:1.25;font-weight:500}.topic-note{margin:9px 0 0;color:var(--muted);font-size:14px}.items{min-width:0}article{padding:0 0 22px;margin:0 0 21px;border-bottom:1px solid #e7ecec}article:last-child{padding-bottom:0;margin-bottom:0;border:0}h3{margin:0;font-size:18px;line-height:1.42;font-weight:600}.venue{margin:4px 0 7px;color:var(--muted);font:12px/1.5 Arial,Helvetica,sans-serif}.summary{max-width:690px;margin:0;color:#3e505b;font-size:15px}.links{display:flex;flex-wrap:wrap;gap:7px 16px;margin-top:10px;font-size:12px;font-weight:700}.links a{text-decoration:none}
+#foundations .section-kicker{color:var(--blue)}#animation .section-kicker{color:var(--coral)}#wbc .section-kicker{color:var(--green)}#applications .section-kicker{color:var(--gold)}#tracking .section-kicker{color:var(--violet)}footer{padding:20px 0 36px;color:var(--muted);font-size:12px}
+@media(max-width:700px){.wrap{width:min(1080px,calc(100% - 34px))}header{padding-top:38px}h1{font-size:36px}.topic{grid-template-columns:1fr;gap:15px;padding:27px 0}.topic-note{max-width:500px}}
+</style>
 </head>
 <body>
-  <header class="wrap">
-    <div class="eyebrow">A research reading map</div>
-    <h1>Unsupervised RL for Humanoid Robotics</h1>
-    <p class="intro">A curated path from forward-backward representations to behavioral foundation models, whole-body control, and applications.</p>
-    <nav aria-label="Topics">
-      <a href="#foundations">Foundations</a>
-      <a href="#animation">Character Animation</a>
-      <a href="#wbc">Whole-Body Control</a>
-      <a href="#applications">Applications</a>
-      <a href="#tracking">Motion Tracking</a>
-    </nav>
-  </header>
-
-  <main class="wrap">
-    <section class="topic" id="foundations">
-      <div class="topic-head">
-        <span class="section-kicker">01 / PRELIMINARIES</span>
-        <h2>Forward-Backward Representations</h2>
-        <p class="topic-note">The representation-learning foundations behind reward-free, reusable control.</p>
-      </div>
-      <div class="items">
-        <article>
-          <h3>Learning One Representation to Optimize All Rewards</h3>
-          <p class="venue">NeurIPS 2021 · Ahmed Touati, Yann Ollivier</p>
-          <p class="summary">Introduces forward-backward representations for reward-free dynamics, enabling policies for many rewards to be derived from a shared learned representation.</p>
-          <div class="links"><a href="https://arxiv.org/abs/2103.07945">Paper</a><a href="https://proceedings.neurips.cc/paper/2021/hash/003dd617c12d444ff9c80f717c3fa982-Abstract.html">NeurIPS</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="topic" id="animation">
-      <div class="topic-head">
-        <span class="section-kicker">02 / CHARACTER ANIMATION</span>
-        <h2>Meta Motivo</h2>
-        <p class="topic-note">A behavioral foundation model for expressive, physics-based humanoid characters.</p>
-      </div>
-      <div class="items">
-        <article>
-          <h3>Zero-Shot Whole-Body Humanoid Control via Behavioral Foundation Models</h3>
-          <p class="venue">Meta Motivo · 2025</p>
-          <p class="summary">Uses forward-backward representations and motion data to prompt a physics-based humanoid character for motion tracking, pose reaching, and reward optimization.</p>
-          <div class="links"><a href="https://arxiv.org/abs/2504.11054">Paper</a><a href="https://ai.meta.com/blog/meta-fair-updates-agents-robustness-safety-architecture/">Meta FAIR</a><a href="https://github.com/facebookresearch/metamotivo">Code</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="topic" id="wbc">
-      <div class="topic-head">
-        <span class="section-kicker">03 / WHOLE-BODY CONTROL</span>
-        <h2>Generalist Humanoid Control</h2>
-        <p class="topic-note">Single behavioral models that support diverse whole-body tasks.</p>
-      </div>
-      <div class="items">
-        <article>
-          <h3>BFM-Zero: A Promptable Behavioral Foundation Model for Humanoid Control Using Unsupervised Reinforcement Learning</h3>
-          <p class="venue">ICLR 2026</p>
-          <p class="summary">Learns a shared latent space for motions, goals, and rewards, supporting promptable whole-body skills and real-world humanoid control.</p>
-          <div class="links"><a href="https://arxiv.org/abs/2511.04131">Paper</a><a href="https://lecar-lab.github.io/BFM-Zero/">Project</a></div>
-        </article>
-        <article>
-          <h3>UFO: A General Unsupervised Reinforcement Learning Framework for Humanoid Control</h3>
-          <p class="venue">Behavioral foundation models · Whole-body control</p>
-          <p class="summary">A general unsupervised RL framework for learning versatile humanoid behaviors from a shared latent representation.</p>
-          <div class="links"><a href="https://roboparty.github.io/UFO/assets/UFO.pdf">Paper</a><a href="https://github.com/Roboparty/UFO">Code</a><a href="https://roboparty.github.io/UFO/">Project</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="topic" id="applications">
-      <div class="topic-head">
-        <span class="section-kicker">04 / APPLICATIONS</span>
-        <h2>From Latents to Interaction</h2>
-        <p class="topic-note">Extending reusable behavior to evolution, contact, and perception.</p>
-      </div>
-      <div class="items">
-        <article>
-          <h3>InterEvolve</h3>
-          <p class="venue">Interactive humanoid behavior</p>
-          <p class="summary">A project exploring interactive humanoid behavior and evolution.</p>
-          <div class="links"><a href="https://sirui-xu.github.io/InterEvolve/">Project</a></div>
-        </article>
-        <article>
-          <h3>I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning</h3>
-          <p class="venue">I-BFM · Humanoid-object interaction</p>
-          <p class="summary">Learns a shared representation of humanoid, object, and contact dynamics for robust interaction and task chaining.</p>
-          <div class="links"><a href="https://arxiv.org/abs/2610.06129">Paper</a><a href="https://iamhardworking.github.io/I-BFM/">Project</a></div>
-        </article>
-        <article>
-          <h3>P-BFM: Perceptive Behavioral Foundation Models</h3>
-          <p class="venue">P-BFM · Terrain-aware control</p>
-          <p class="summary">Separates terrain-invariant behavioral intent from terrain-conditioned realization for adaptive humanoid control.</p>
-          <div class="links"><a href="https://roboparty.github.io/P-BFM/">Project</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="topic" id="tracking">
-      <div class="topic-head">
-        <span class="section-kicker">05 / MOTION TRACKING</span>
-        <h2>Latent Sequence Optimization</h2>
-        <p class="topic-note">Using a behavioral foundation model for precise, time-varying motion objectives.</p>
-      </div>
-      <div class="items">
-        <article>
-          <h3>BFMTrack: Latent Sequence Optimization for Physics-Based Motion Tracking with Behavioral Foundation Models</h3>
-          <p class="venue">Preprint · 2026</p>
-          <p class="summary">Optimizes a sequence of behavioral latents to track motion references, including dense tracking and sparse keyframing.</p>
-          <div class="links"><a href="https://arxiv.org/abs/2606.25056">Paper</a></div>
-        </article>
-      </div>
-    </section>
-  </main>
-  <footer class="wrap">Maintained as a community reading map. Paper and project details link to their original sources.</footer>
+<header class="wrap"><div class="eyebrow">A research reading map</div><h1>Unsupervised RL for Humanoid Robotics</h1><p class="intro">A curated path from forward-backward representations to behavioral foundation models, whole-body control, and applications.</p><nav aria-label="Topics"><a href="#foundations">Foundations</a><a href="#animation">Character Animation</a><a href="#wbc">Whole-Body Control</a><a href="#applications">Applications</a><a href="#tracking">Motion Tracking</a></nav></header>
+<main class="wrap">
+<section class="topic" id="foundations"><div class="topic-head"><span class="section-kicker">01 / PRELIMINARIES</span><h2>Forward-Backward Representations</h2><p class="topic-note">The representation-learning foundations behind reward-free, reusable control.</p></div><div class="items"><article><h3>Learning One Representation to Optimize All Rewards</h3><p class="venue">NeurIPS 2021 · Ahmed Touati, Yann Ollivier</p><p class="summary">Introduces forward-backward representations for reward-free dynamics, enabling policies for many rewards to be derived from a shared learned representation.</p><div class="links"><a href="https://arxiv.org/abs/2103.07945">Paper</a><a href="https://proceedings.neurips.cc/paper/2021/hash/003dd617c12d444ff9c80f717c3fa982-Abstract.html">NeurIPS</a></div></article></div></section>
+<section class="topic" id="animation"><div class="topic-head"><span class="section-kicker">02 / CHARACTER ANIMATION</span><h2>Meta Motivo</h2><p class="topic-note">A behavioral foundation model for expressive, physics-based humanoid characters.</p></div><div class="items"><article><h3>Zero-Shot Whole-Body Humanoid Control via Behavioral Foundation Models</h3><p class="venue">Meta Motivo · 2025</p><p class="summary">Uses forward-backward representations and motion data to prompt a physics-based humanoid character for motion tracking, pose reaching, and reward optimization.</p><div class="links"><a href="https://arxiv.org/abs/2504.11054">Paper</a><a href="https://ai.meta.com/blog/meta-fair-updates-agents-robustness-safety-architecture/">Meta FAIR</a><a href="https://github.com/facebookresearch/metamotivo">Code</a></div></article></div></section>
+<section class="topic" id="wbc"><div class="topic-head"><span class="section-kicker">03 / WHOLE-BODY CONTROL</span><h2>Generalist Humanoid Control</h2><p class="topic-note">Single behavioral models that support diverse whole-body tasks.</p></div><div class="items"><article><h3>BFM-Zero: A Promptable Behavioral Foundation Model for Humanoid Control Using Unsupervised Reinforcement Learning</h3><p class="venue">ICLR 2026</p><p class="summary">Learns a shared latent space for motions, goals, and rewards, supporting promptable whole-body skills and real-world humanoid control.</p><div class="links"><a href="https://arxiv.org/abs/2511.04131">Paper</a><a href="https://lecar-lab.github.io/BFM-Zero/">Project</a></div></article><article><h3>UFO: A General Unsupervised Reinforcement Learning Framework for Humanoid Control</h3><p class="venue">Behavioral foundation models · Whole-body control</p><p class="summary">A general unsupervised RL framework for learning versatile humanoid behaviors from a shared latent representation.</p><div class="links"><a href="https://roboparty.github.io/UFO/assets/UFO.pdf">Paper</a><a href="https://github.com/Roboparty/UFO">Code</a><a href="https://roboparty.github.io/UFO/">Project</a></div></article></div></section>
+<section class="topic" id="applications"><div class="topic-head"><span class="section-kicker">04 / APPLICATIONS</span><h2>From Latents to Interaction</h2><p class="topic-note">Extending reusable behavior to evolution, contact, and perception.</p></div><div class="items"><article><h3>InterEvolve</h3><p class="venue">Interactive humanoid behavior</p><p class="summary">A project exploring interactive humanoid behavior and evolution.</p><div class="links"><a href="https://sirui-xu.github.io/InterEvolve/">Project</a></div></article><article><h3>I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning</h3><p class="venue">I-BFM · Humanoid-object interaction</p><p class="summary">Learns a shared representation of humanoid, object, and contact dynamics for robust interaction and task chaining.</p><div class="links"><a href="https://arxiv.org/abs/2610.06129">Paper</a><a href="https://iamhardworking.github.io/I-BFM/">Project</a></div></article><article><h3>P-BFM: Perceptive Behavioral Foundation Models</h3><p class="venue">P-BFM · Terrain-aware control</p><p class="summary">Separates terrain-invariant behavioral intent from terrain-conditioned realization for adaptive humanoid control.</p><div class="links"><a href="https://roboparty.github.io/P-BFM/">Project</a></div></article></div></section>
+<section class="topic" id="tracking"><div class="topic-head"><span class="section-kicker">05 / MOTION TRACKING</span><h2>Latent Sequence Optimization</h2><p class="topic-note">Using a behavioral foundation model for precise, time-varying motion objectives.</p></div><div class="items"><article><h3>BFMTrack: Latent Sequence Optimization for Physics-Based Motion Tracking with Behavioral Foundation Models</h3><p class="venue">Preprint · 2026</p><p class="summary">Optimizes a sequence of behavioral latents to track motion references, including dense tracking and sparse keyframing.</p><div class="links"><a href="https://arxiv.org/abs/2606.25056">Paper</a></div></article></div></section>
+</main><footer class="wrap">Maintained as a community reading map. Paper and project details link to their original sources.</footer>
 </body>
 </html>
