@@ -56,6 +56,8 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 .paper.has-insights .summary{display:none}
 .paper-insights h4{margin:7px 0 3px;color:#8c5546;font:700 10px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase}
 .paper-insights p{max-width:700px;margin:0;color:#65585f;font-size:13px;line-height:1.55}
+.paper-insights ul{max-width:760px;margin:0;padding-left:18px;color:#65585f;font-size:13px;line-height:1.55}
+.paper-insights li+li{margin-top:3px}
 .extension-count{margin-left:auto;margin-right:12px;color:#81786d;font:400 11px/1.4 Arial,Helvetica,sans-serif}
 </style>
 </head>
@@ -67,7 +69,7 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 <section class="topic" id="animation"><div class="topic-head"><span class="section-kicker">02 / CHARACTER ANIMATION</span><h2>Meta Motivo</h2><p class="topic-note">A behavioral foundation model for expressive, physics-based humanoid characters.</p></div><div class="items"><article class="paper"><div><h3>Zero-Shot Whole-Body Humanoid Control via Behavioral Foundation Models</h3><p class="summary">Uses forward-backward representations and motion data to prompt a physics-based humanoid character for motion tracking, pose reaching, and reward optimization.</p><div class="links"><a href="https://arxiv.org/abs/2504.11054">Paper</a><a href="https://github.com/facebookresearch/metamotivo">Code</a></div></div></article></div></section>
 <section class="topic" id="wbc"><div class="topic-head"><span class="section-kicker">03 / WHOLE-BODY CONTROL</span><h2>Generalist Humanoid Control</h2><p class="topic-note">Shared behavioral models for diverse whole-body tasks.</p></div><div class="items"><article class="paper"><div><h3>BFM-Zero: A Promptable Behavioral Foundation Model for Humanoid Control Using Unsupervised Reinforcement Learning</h3><p class="summary">Learns a shared latent space for motions, goals, and rewards, supporting promptable whole-body skills and real-world humanoid control.</p><div class="links"><a href="https://arxiv.org/abs/2511.04131">Paper</a><a href="https://github.com/LeCAR-Lab/BFM-Zero">Code</a><a href="https://lecar-lab.github.io/BFM-Zero/">Project</a></div></div></article><article class="paper"><div><h3>UFO: A General Unsupervised Reinforcement Learning Framework for Humanoid Control</h3><p class="summary">A general unsupervised RL framework for learning versatile humanoid behaviors from a shared latent representation.</p><div class="links"><a href="https://roboparty.github.io/UFO/assets/UFO.pdf">Paper</a><a href="https://github.com/Roboparty/UFO">Code</a><a href="https://roboparty.github.io/UFO/">Project</a></div></div></article></div></section>
 <section class="topic" id="discussion"><div class="topic-head"><span class="section-kicker">05 / DISCUSSION</span><h2>Reducing Zero-Shot Inference Suboptimality</h2><p class="topic-note">Improving zero-shot task inference in behavioral foundation models and optimizing latent sequences for motion tracking.</p></div><div class="items"><article class="paper"><div><h3>Task Inference Beyond Least Squares in Behavioral Foundation Models</h3><p class="summary">Revisits test-time task-vector inference: balancing reward reconstruction with successor-measure alignment reduces the suboptimality of retrieved zero-shot policies.</p><div class="links"><a href="https://arxiv.org/abs/2610.05350">Paper</a><a href="https://embodiedai-ntu.github.io/BLS">Project</a></div></div></article><article class="paper"><div><h3>BFMTrack: Latent Sequence Optimization for Physics-Based Motion Tracking with Behavioral Foundation Models</h3><p class="summary">Optimizes a sequence of behavioral latents with simulation rollouts and policy gradients, extending BFMs from time-invariant objectives to motion tracking.</p><div class="links"><a href="https://arxiv.org/abs/2606.25056">Paper</a></div></div></article></div></section>
-</main><footer class="contact-footer"><div class="contact-intro"><span class="contact-label">GET IN TOUCH</span><strong>Contact</strong><p>A living map of unsupervised reinforcement learning and behavioral foundation models.</p></div><div class="contact-links"><a href="mailto:liyitang475@gmail.com"><span>Email</span><strong>liyitang475@gmail.com</strong></a><a href="https://liyitang22.github.io/"><span>Homepage</span><strong>liyitang22.github.io ↗</strong></a></div></footer>
+</main><footer class="contact-footer"><div class="contact-intro"><span class="contact-label">GET IN TOUCH</span><strong>Contact</strong></div><div class="contact-links"><a href="mailto:liyitang475@gmail.com"><span>Email</span><strong>liyitang475@gmail.com</strong></a><a href="https://liyitang22.github.io/"><span>Homepage</span><strong>liyitang22.github.io ↗</strong></a></div></footer>
 <script>document.addEventListener("DOMContentLoaded",()=>{const section=document.getElementById("applications");const discussion=document.getElementById("discussion");if(section&&discussion)discussion.before(section);document.querySelectorAll(".extension-swatch").forEach(button=>button.addEventListener("click",()=>{const target=document.getElementById(button.dataset.extensionTarget);if(!target)return;const wasOpen=button.getAttribute("aria-expanded")==="true";document.querySelectorAll(".extension-swatch").forEach(item=>item.setAttribute("aria-expanded","false"));document.querySelectorAll(".extension-panel").forEach(panel=>panel.hidden=true);if(!wasOpen){button.setAttribute("aria-expanded","true");target.hidden=false;}}));});</script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
@@ -102,8 +104,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   });
   const makeGroup=(title,id,papers)=>{
     const group=document.createElement("section");group.className="reading-group";
-    const button=document.createElement("button");button.type="button";button.className="group-title reading-toggle";button.textContent=title;button.setAttribute("aria-expanded","false");button.setAttribute("aria-controls",id);
-    const panel=document.createElement("div");panel.className="reading-panel";panel.id=id;panel.hidden=true;papers.forEach(paper=>panel.append(paper));
+    const button=document.createElement("button");button.type="button";button.className="group-title reading-toggle";button.textContent=title;button.setAttribute("aria-expanded","true");button.setAttribute("aria-controls",id);
+    const panel=document.createElement("div");panel.className="reading-panel";panel.id=id;panel.hidden=false;papers.forEach(paper=>panel.append(paper));
     button.addEventListener("click",()=>{const open=button.getAttribute("aria-expanded")==="true";button.setAttribute("aria-expanded",String(!open));panel.hidden=open;});
     group.append(button,panel);return group;
   };
@@ -113,8 +115,22 @@ document.addEventListener("DOMContentLoaded",()=>{
 <script>document.addEventListener("DOMContentLoaded",()=>{
   const byId={
     "2504.07896":["theory","Motivation","Zero-shot BFM policies can still fall short of a requested task, while full retraining defeats the purpose of reusable pretraining.","Searches directly in the pretrained latent space to adapt quickly, improving task performance while limiting regression on existing behaviors."],
-    "2504.11054":["robot","New design","Combines forward-backward representations with conditional-policy regularization, using unlabeled motion-capture data to ground policy coverage in human-like behaviors.","The first humanoid behavioral foundation model supports zero-shot motion tracking, goal reaching, and reward optimization; follow-on work explores fast adaptation in the learned latent space."],
-    "2511.04131":["robot","New design","Builds on off-policy FB actor-critic learning, adding reward shaping, domain randomization, and history-dependent asymmetric learning to bridge the sim-to-real gap.","First demonstration of off-policy unsupervised RL for real-humanoid behavioral foundation control, transferring whole-body skills to a Unitree G1 with few-shot optimization-based adaptation."],
+    "2504.11054":["robot","New design",[
+      "Learns from motion-capture clips without needing action labels.",
+      "Uses one shared latent space to connect body states, motions, and rewards.",
+      "Regularizes the policy toward the motion data so it can produce a broad range of human-like behavior."
+    ],[
+      "One model can track a motion, reach a target pose, or optimize a new reward without training a separate policy for each task.",
+      "Introduces a humanoid behavioral foundation model in physics simulation."
+    ]],
+    "2511.04131":["robot","New design",[
+      "Uses off-policy forward-backward learning to build a reusable space of whole-body skills.",
+      "Combines reward shaping, domain randomization, and history-aware learning to help transfer skills from simulation to hardware."
+    ],[
+      "Demonstrates unsupervised behavioral-foundation-model control on a real Unitree G1.",
+      "Supports motion tracking, goal reaching, and reward-based control, with few-shot latent adaptation.",
+      "Tests recovery and robustness under real-world disturbances."
+    ]],
     "2209.14935":["theory","Motivation","Zero-shot RL promises instant task solving after reward-free pretraining, but its practical viability and relation to successor features needed systematic study.","Compares successor-feature and forward-backward methods across offline benchmarks; FB performs consistently well without requiring handcrafted state features."],
     "2602.01962":["theory","Motivation","Zero-shot policies derived from offline data face distribution shift when the desired task differs from the behavior data.","Connects successor measures to stationary density ratios, enabling task-specific off-policy correction without additional training."],
     "2602.06769":["theory","Motivation","Standard FB methods target additive rewards, excluding objectives such as distribution matching and pure exploration.","Introduces a soft FB formulation and latent-space search to optimize broader differentiable utility functions from offline data."],
@@ -122,12 +138,58 @@ document.addEventListener("DOMContentLoaded",()=>{
     "2603.15857":["theory","Motivation","Complex BFM objectives can be costly and depend on adequate dataset coverage; plain latent next-state prediction may collapse feature diversity.","Adds orthogonality regularization to latent dynamics prediction, preserving diverse features and matching or surpassing more complex methods."],
     "2606.01123":["theory","Motivation","Offline preference RL usually learns an explicit reward or preference model, while reward-free representations lack a task signal at inference.","Combines FB successor-measure representations with contrastive preference learning to infer tasks directly and improve preference efficiency."],
     "2610.05350":["theory","Motivation","Least-squares task-vector inference can leave zero-shot BFM policies noticeably below their attainable performance.","Balances reward reconstruction with successor-measure alignment to reduce inference suboptimality."],
-    "2606.25056":["robot","New design","A single task latent is not enough for long-horizon motion tracking when the desired behavior changes over time.","Optimizes a sequence of BFM latents with simulation rollouts and policy gradients to track physics-based motion."],
-    "UFO":["robot","New design","Humanoid control needs a reusable way to learn varied behaviors without relying on hand-designed rewards for every task.","Presents a general unsupervised RL framework for learning and deploying a broad repertoire of humanoid behaviors."],
-    "InterEvolve":["robot","New design","Humanoid loco-manipulation requires coordinating locomotion and object interaction as task conditions evolve.","Uses test-time evolution of reward programs to adapt humanoid loco-manipulation behaviors."],
-    "I-BFM":["robot","New design","Humanoid-object interaction must remain robust across varied objects, contacts, and task sequences.","Learns a shared interaction representation for reward-conditioned control and composable humanoid-object behaviors."],
-    "P-BFM":["robot","New design","A controller trained on one terrain can confuse the intended behavior with the terrain-specific motion needed to realize it.","Separates terrain-invariant intent from terrain-conditioned realization, enabling perceptive control across changing terrain."],
-    "CrossBFM":["robot","New design","Behavior learned for one humanoid embodiment does not directly transfer to robots with different bodies.","Distills a shared latent behavior space across embodiments to support cross-robot transfer and reuse."]
+    "2606.25056":["robot","New design",[
+      "Represents a motion with a sequence of behavior latents, rather than one fixed latent for the whole motion.",
+      "Uses simulated rollouts and policy updates to improve that latent sequence.",
+      "Correlated updates keep neighboring parts of the motion coordinated."
+    ],[
+      "Tracks both full motions and sparse keyframes.",
+      "Reduces the need to hand-design a tracking reward for each motion."
+    ]],
+    "UFO":["robot","New design",[
+      "Provides a reusable framework for learning and deploying unsupervised humanoid skills.",
+      "Its TeCH method learns how reachable one state is from another, then uses that structure to guide the robot toward goals.",
+      "Combines motion sources so new skills can be added while retaining previously learned behaviors."
+    ],[
+      "Supports motion tracking, goal-reaching, and reward-driven control across humanoid setups.",
+      "Demonstrates robust real-world teleoperation, including under external pushes."
+    ]],
+    "InterEvolve":["robot","New design",[
+      "Keeps the pretrained motion controller fixed; it changes the task instructions instead of retraining the controller.",
+      "Describes a task as stages, each with a reward and a clear condition for completion.",
+      "Uses trial feedback to revise the stages and tune their settings, then checks candidates in simulation."
+    ],[
+      "Turns a task goal into multi-step humanoid interactions such as pushing or carrying.",
+      "Can improve a task program through repeated trials without changing the underlying controller.",
+      "Demonstrates evolved skills on a Unitree G1 using onboard perception."
+    ]],
+    "I-BFM":["robot","New design",[
+      "Learns from the coupled motion of the humanoid, objects, and physical contact.",
+      "Uses a shared forward-backward representation and policy instead of a separate policy for every interaction.",
+      "Combines short-term interaction cues with longer-term goals."
+    ],[
+      "One model supports object tasks such as carrying, pushing, and kicking, alongside tracking and reaching.",
+      "Can chain interaction steps and recover from large errors, including falls.",
+      "Demonstrates object interaction on a real Unitree G1."
+    ]],
+    "P-BFM":["robot","New design",[
+      "Separates what the robot should do (intent) from how it should move on the current terrain.",
+      "Uses depth input so the controller can adjust its steps and posture to the ground ahead.",
+      "Adds direct heading and speed instructions to steer the intended behavior."
+    ],[
+      "The same policy adapts its footholds, step height, and posture across terrain.",
+      "Supports motion tracking, pose reaching, reward control, and teleoperation.",
+      "Demonstrates zero-shot transfer to a Unitree G1 with onboard depth sensing."
+    ]],
+    "CrossBFM":["robot","New design",[
+      "Uses corresponding motions retargeted across robots to connect their different bodies.",
+      "Maps each robot into a shared behavior space, without giving the shared encoder robot-specific parameters.",
+      "Trains each robot to follow prompts from that common space."
+    ],[
+      "Reuses behavior prompts across three humanoid embodiments for tracking, reaching, and reward-based tasks.",
+      "Tests transfer to a similar robot not seen during training.",
+      "Demonstrates cross-robot behavior transfer on real hardware."
+    ]]
   };
   const cards=[...document.querySelectorAll(".paper")];
   cards.forEach((card,index)=>{
@@ -142,9 +204,13 @@ document.addEventListener("DOMContentLoaded",()=>{
     const button=document.createElement("button");button.type="button";button.className="paper-expand";button.textContent="Explore summary";button.title="Select to expand";button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",`Expand ${title} summary`);
     const panel=document.createElement("div");panel.className="paper-insights";panel.hidden=true;panel.id=`paper-insights-${index}`;button.setAttribute("aria-controls",panel.id);
     const firstHeading=document.createElement("h4");firstHeading.textContent=kind==="robot"?"New design":"Motivation";
-    const firstText=document.createElement("p");firstText.textContent=first;
+    const renderContent=content=>{
+      if(!Array.isArray(content)){const paragraph=document.createElement("p");paragraph.textContent=content;return paragraph;}
+      const list=document.createElement("ul");content.forEach(point=>{const item=document.createElement("li");item.textContent=point;list.append(item);});return list;
+    };
+    const firstText=renderContent(first);
     const secondHeading=document.createElement("h4");secondHeading.textContent=kind==="robot"?"New capability":"Results";
-    const secondText=document.createElement("p");secondText.textContent=second;
+    const secondText=renderContent(second);
     panel.append(firstHeading,firstText,secondHeading,secondText);
     const setOpen=open=>{panel.hidden=!open;button.setAttribute("aria-expanded",String(open));};
     card.classList.add("has-insights");
