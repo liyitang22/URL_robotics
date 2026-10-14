@@ -29,7 +29,7 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 </style>
 <style>
 .reading-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;padding:0 0 10px;border:0;background:none;text-align:left;cursor:pointer}
-.reading-toggle::after{content:"+";display:grid;place-items:center;width:24px;height:24px;border:1px solid #cfc2b2;border-radius:50%;color:#8c6e61;font:400 17px/1 Arial,Helvetica,sans-serif}
+.reading-toggle::after{content:"+";display:grid;place-items:center;box-sizing:border-box;width:15px;height:15px;border:1px solid #cfc2b2;border-radius:50%;color:#8c6e61;font:400 11px/1 Arial,Helvetica,sans-serif}
 .reading-toggle[aria-expanded="true"]::after{content:"−"}
 .reading-toggle:focus-visible{outline:2px solid #a15b49;outline-offset:3px}
 .reading-panel[hidden]{display:none}
@@ -41,6 +41,15 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 .contact-footer a:hover{color:#5d3d34;border-color:#8c5546}
 .contact-links{display:flex;flex-wrap:wrap;gap:12px 24px}
 @media(max-width:600px){.contact-footer{display:block}.contact-links{margin-top:14px}}
+.paper{transition:padding-bottom .2s ease}
+.paper-expand{grid-column:2;justify-self:start;margin-top:8px;padding:2px 0;border:0;background:none;color:#8c5546;font:600 11px/1.4 Arial,Helvetica,sans-serif;cursor:pointer}
+.paper-expand::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;margin-right:7px;border:1px solid #c9a896;border-radius:50%;font-size:14px;font-weight:400;vertical-align:middle}
+.paper-expand[aria-expanded="true"]::before{content:"−"}
+.paper-expand:focus-visible{outline:2px solid #a15b49;outline-offset:3px}
+.paper-insights{grid-column:2;margin-top:10px;padding:0 0 2px 12px;border-left:2px solid #c9a896}
+.paper-insights[hidden]{display:none}
+.paper-insights h4{margin:9px 0 3px;color:#8c5546;font:700 10px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase}
+.paper-insights p{max-width:700px;margin:0;color:#65585f;font-size:13px;line-height:1.55}
 </style>
 </head>
 <body>
@@ -94,7 +103,49 @@ document.addEventListener("DOMContentLoaded",()=>{
   list.replaceChildren(base,makeGroup("Adaptation","adaptation-papers",adaptation),makeGroup("Representation Improvements & Variants & Discussion","representation-papers",representations));
 });
 </script>
-<script>document.addEventListener("DOMContentLoaded",()=>{const navLink=document.querySelector('.nav a[href="#discussion"]');if(navLink)navLink.innerHTML="<b>05</b> Inference";const kicker=document.querySelector("#discussion .section-kicker");if(kicker)kicker.textContent="05 / INFERENCE";const extensionTitle=document.querySelector("#applications .topic-head h2");if(extensionTitle)extensionTitle.textContent="From Single-Robot WBC to ...";});</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{
+  const byId={
+    "2504.07896":["theory","Motivation","Zero-shot BFM policies can still fall short of a requested task, while full retraining defeats the purpose of reusable pretraining.","Searches directly in the pretrained latent space to adapt quickly, improving task performance while limiting regression on existing behaviors."],
+    "2209.14935":["theory","Motivation","Zero-shot RL promises instant task solving after reward-free pretraining, but its practical viability and relation to successor features needed systematic study.","Compares successor-feature and forward-backward methods across offline benchmarks; FB performs consistently well without requiring handcrafted state features."],
+    "2602.01962":["theory","Motivation","Zero-shot policies derived from offline data face distribution shift when the desired task differs from the behavior data.","Connects successor measures to stationary density ratios, enabling task-specific off-policy correction without additional training."],
+    "2602.06769":["theory","Motivation","Standard FB methods target additive rewards, excluding objectives such as distribution matching and pure exploration.","Introduces a soft FB formulation and latent-space search to optimize broader differentiable utility functions from offline data."],
+    "2602.11399":["theory","Motivation","The conditions under which FB representations exist, and the behavior of their low-rank approximation, need clearer theory.","Analyzes existence and convergence, then proposes a simpler FB variant with improved optimization and zero-shot results."],
+    "2603.15857":["theory","Motivation","Complex BFM objectives can be costly and depend on adequate dataset coverage; plain latent next-state prediction may collapse feature diversity.","Adds orthogonality regularization to latent dynamics prediction, preserving diverse features and matching or surpassing more complex methods."],
+    "2606.01123":["theory","Motivation","Offline preference RL usually learns an explicit reward or preference model, while reward-free representations lack a task signal at inference.","Combines FB successor-measure representations with contrastive preference learning to infer tasks directly and improve preference efficiency."],
+    "2610.05350":["theory","Motivation","Least-squares task-vector inference can leave zero-shot BFM policies noticeably below their attainable performance.","Balances reward reconstruction with successor-measure alignment to reduce inference suboptimality."],
+    "2606.25056":["robot","New design","A single task latent is not enough for long-horizon motion tracking when the desired behavior changes over time.","Optimizes a sequence of BFM latents with simulation rollouts and policy gradients to track physics-based motion."],
+    "UFO":["robot","New design","Humanoid control needs a reusable way to learn varied behaviors without relying on hand-designed rewards for every task.","Presents a general unsupervised RL framework for learning and deploying a broad repertoire of humanoid behaviors."],
+    "InterEvolve":["robot","New design","Humanoid loco-manipulation requires coordinating locomotion and object interaction as task conditions evolve.","Uses test-time evolution of reward programs to adapt humanoid loco-manipulation behaviors."],
+    "I-BFM":["robot","New design","Humanoid-object interaction must remain robust across varied objects, contacts, and task sequences.","Learns a shared interaction representation for reward-conditioned control and composable humanoid-object behaviors."],
+    "P-BFM":["robot","New design","A controller trained on one terrain can confuse the intended behavior with the terrain-specific motion needed to realize it.","Separates terrain-invariant intent from terrain-conditioned realization, enabling perceptive control across changing terrain."],
+    "CrossBFM":["robot","New design","Behavior learned for one humanoid embodiment does not directly transfer to robots with different bodies.","Distills a shared latent behavior space across embodiments to support cross-robot transfer and reuse."]
+  };
+  const cards=[...document.querySelectorAll(".paper")];
+  cards.forEach((card,index)=>{
+    const title=card.querySelector("h3")?.textContent.trim()||"";
+    if(card.closest("#animation")||title.startsWith("Learning One Representation")||title.startsWith("BFM-Zero:"))return;
+    const href=card.querySelector('.links a[href*="arxiv"]')?.href||"";
+    const id=href.match(/\d{4}\.\d{5}/)?.[0];
+    const key=id||["UFO","InterEvolve","I-BFM","P-BFM","CrossBFM"].find(name=>title.startsWith(name));
+    const data=byId[key];if(!data)return;
+    const [kind,label,first,second]=data;
+    const button=document.createElement("button");button.type="button";button.className="paper-expand";button.textContent="Explore summary";button.title="Hover or select to expand";button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",`Expand ${title} summary`);
+    const panel=document.createElement("div");panel.className="paper-insights";panel.hidden=true;panel.id=`paper-insights-${index}`;button.setAttribute("aria-controls",panel.id);
+    const firstHeading=document.createElement("h4");firstHeading.textContent=kind==="robot"?"New design":"Motivation";
+    const firstText=document.createElement("p");firstText.textContent=first;
+    const secondHeading=document.createElement("h4");secondHeading.textContent=kind==="robot"?"New capability":"Results";
+    const secondText=document.createElement("p");secondText.textContent=second;
+    panel.append(firstHeading,firstText,secondHeading,secondText);
+    const setOpen=open=>{panel.hidden=!open;button.setAttribute("aria-expanded",String(open));};
+    button.addEventListener("click",()=>setOpen(panel.hidden));
+    card.addEventListener("pointerenter",event=>{if(event.pointerType==="mouse")setOpen(true);});
+    card.addEventListener("pointerleave",event=>{if(event.pointerType==="mouse")setOpen(false);});
+    card.addEventListener("focusin",()=>setOpen(true));
+    card.addEventListener("focusout",event=>{if(!card.contains(event.relatedTarget))setOpen(false);});
+    card.append(button,panel);
+  });
+});</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{const navLink=document.querySelector('.nav a[href="#discussion"]');if(navLink)navLink.innerHTML="<b>05</b> Inference";const kicker=document.querySelector("#discussion .section-kicker");if(kicker)kicker.textContent="05 / INFERENCE";const extensionTitle=document.querySelector("#applications .topic-head h2");if(extensionTitle)extensionTitle.textContent="From Single-Robot WBC to ...";document.querySelector(".gallery-heading p")?.remove();});</script>
 </body>
 </html>
 <section class="topic" id="applications"><div class="topic-head"><span class="section-kicker">04 / EXTENSIONS</span><h2>From Single-Robot Locomotion to ...</h2><p class="topic-note">Behavior across contact, perception, and embodiments.</p></div><div class="extension-explorer"><div class="extension-group"><button class="extension-swatch interaction" type="button" data-extension-target="panel-interaction" aria-expanded="false" aria-controls="panel-interaction">Interaction</button><div class="extension-panel" id="panel-interaction" hidden><article class="paper" id="interevolve"><div><h3>InterEvolve: Test-Time Evolution of Reward Programs for Humanoid Loco-Manipulation</h3><p class="summary">A project exploring interactive humanoid behavior and evolution.</p><div class="links"><a href="https://sirui-xu.github.io/InterEvolve/">Project</a></div></div></article><article class="paper" id="ibfm"><div><h3>I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning</h3><p class="summary">Learns a shared representation of humanoid, object, and contact dynamics for robust interaction and task chaining.</p><div class="links"><a href="https://arxiv.org/abs/2610.06129">Paper</a><a href="https://github.com/Roboparty/I-BFM-Code">Code</a><a href="https://iamhardworking.github.io/I-BFM/">Project</a></div></div></article></div></div><div class="extension-group"><button class="extension-swatch perception" type="button" data-extension-target="panel-perception" aria-expanded="false" aria-controls="panel-perception">Perception</button><div class="extension-panel" id="panel-perception" hidden><article class="paper" id="pbfm"><div><h3>P-BFM: Perceptive Behavioral Foundation Models for Humanoid Control via Unsupervised Reinforcement Learning</h3><p class="summary">Separates terrain-invariant behavioral intent from terrain-conditioned realization for adaptive humanoid control.</p><div class="links"><a href="https://github.com/Roboparty/P-BFM">Code</a><a href="https://roboparty.github.io/P-BFM/">Project</a></div></div></article></div></div><div class="extension-group"><button class="extension-swatch robots" type="button" data-extension-target="panel-robots" aria-expanded="false" aria-controls="panel-robots">Multiple Robots</button><div class="extension-panel" id="panel-robots" hidden><article class="paper" id="crossbfm"><div><h3>CrossBFM: Distilling a Shared Latent Behavior Space Across Humanoid Embodiments</h3><p class="summary">Distills a shared behavior latent space across humanoid embodiments, aiming to reduce training cost and transfer prompted behaviors to different robots.</p><div class="links"><a href="https://arxiv.org/abs/2609.38087">Paper</a><a href="https://github.com/dotandung/crossbfm">Code</a><a href="https://dotandung.github.io/CrossBFM/">Project</a></div></div></article></div></div></div></section>
