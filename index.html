@@ -28,28 +28,35 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 .hero{text-align:center}.eyebrow{justify-content:center}h1,.intro{margin-left:auto;margin-right:auto}.site-gallery{padding:28px 0 32px;background:#eeeadf;border-bottom:1px solid var(--line)}.gallery-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:14px}.gallery-heading .section-kicker{margin-bottom:6px}.gallery-heading h2{margin:0;color:var(--pine);font-size:24px;font-weight:500}.gallery-heading p{margin:0;color:var(--muted);font-size:13px}.video-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.video-item{min-width:0}.video-frame{aspect-ratio:16/9;overflow:hidden;background:#e1ddd2;border:1px solid var(--line);border-radius:4px}.video-frame video{display:block;width:100%;height:100%;object-fit:cover}.demo-link{height:100%;min-height:124px;display:flex;flex-direction:column;justify-content:space-between;padding:15px 16px;background:#e5dfd2;color:var(--pine);text-decoration:none;transition:background .18s ease}.demo-link:hover{background:#ddd3c2}.demo-link span:first-child{font-size:10px;letter-spacing:.1em;color:#9c604a}.demo-link strong{font-size:18px;font-weight:500}.demo-link span:last-child{font-size:12px;color:#806c5c}.video-item h3{margin:8px 0 2px;color:#354a41;font-size:15px;font-weight:600}.video-item p{margin:0;color:#66685f;font-size:12px;line-height:1.45}.gallery-more{display:inline-block;margin-top:6px;color:#a65e49;font-size:12px;text-decoration:none}.gallery-more:hover{text-decoration:underline}@media(max-width:980px){.video-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:760px){.site-gallery{padding:24px 0 28px}.gallery-heading{display:block}.gallery-heading p{margin-top:7px}.video-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}@media(max-width:480px){.video-grid{grid-template-columns:1fr;gap:14px}}
 </style>
 <style>
-.reading-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;padding:0 0 10px;border:0;background:none;text-align:left;cursor:pointer}
+.reading-group{margin:0 0 5px}
+.reading-toggle{display:flex;width:100%;min-height:0;align-items:center;justify-content:space-between;margin:8px 0 4px;padding:0;border:0;background:none;text-align:left;cursor:pointer}
+.reading-toggle.group-title{color:#a15b49;font-size:13px;line-height:1.4}
 .reading-toggle::after{content:"+";display:grid;place-items:center;box-sizing:border-box;width:15px;height:15px;border:1px solid #cfc2b2;border-radius:50%;color:#8c6e61;font:400 11px/1 Arial,Helvetica,sans-serif}
 .reading-toggle[aria-expanded="true"]::after{content:"−"}
 .reading-toggle:focus-visible{outline:2px solid #a15b49;outline-offset:3px}
 .reading-panel[hidden]{display:none}
-.reading-panel{padding-bottom:4px}
-.contact-footer{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:34px 0 42px!important;font-size:15px!important}
-.contact-footer strong{display:block;margin-bottom:8px;color:#354a41;font:600 22px/1.2 Georgia,serif}
-.contact-footer p{margin:0;color:#66685f;font-size:14px;line-height:1.6}
-.contact-footer a{color:#8c5546;text-decoration:none;border-bottom:1px solid #c9a896;padding-bottom:2px}
-.contact-footer a:hover{color:#5d3d34;border-color:#8c5546}
-.contact-links{display:flex;flex-wrap:wrap;gap:12px 24px}
-@media(max-width:600px){.contact-footer{display:block}.contact-links{margin-top:14px}}
+.reading-panel{padding:0}
+.contact-footer{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);align-items:center;gap:28px;width:100%;margin:0;padding:26px max(26px,calc((100% - 1100px)/2)) 30px!important;border-top:1px solid #d8d3c6;background:#eeeadf;font-size:15px!important}
+.contact-intro strong{display:block;margin:2px 0 5px;color:#354a41;font:600 24px/1.2 Georgia,serif}
+.contact-label{color:#a15b49;font:700 10px/1.4 Arial,Helvetica,sans-serif;letter-spacing:.08em}
+.contact-intro p{max-width:520px;margin:0;color:#77796f;font-size:14px;line-height:1.5}
+.contact-links{display:grid;grid-template-columns:1fr 1fr;gap:10px 20px}
+.contact-links a{display:flex;flex-direction:column;gap:3px;padding:8px 0;color:#354a41;text-decoration:none;border-bottom:1px solid #cfc6b5}
+.contact-links a span{color:#897e70;font:700 10px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.04em}
+.contact-links a strong{font:500 14px/1.4 Arial,Helvetica,sans-serif;overflow-wrap:anywhere}
+.contact-links a:hover{color:#8c4f40;border-color:#a15b49}
+@media(max-width:600px){.contact-footer{grid-template-columns:1fr;gap:16px;padding:23px 20px 26px!important}.contact-links{grid-template-columns:1fr 1fr;gap:10px 16px}}
 .paper{transition:padding-bottom .2s ease}
-.paper-expand{grid-column:2;justify-self:start;margin-top:8px;padding:2px 0;border:0;background:none;color:#8c5546;font:600 11px/1.4 Arial,Helvetica,sans-serif;cursor:pointer}
+.paper-expand{grid-column:2;justify-self:start;margin-top:6px;padding:2px 0;border:0;background:none;color:#8c5546;font:600 11px/1.4 Arial,Helvetica,sans-serif;cursor:pointer}
 .paper-expand::before{content:"+";display:inline-grid;place-items:center;width:18px;height:18px;margin-right:7px;border:1px solid #c9a896;border-radius:50%;font-size:14px;font-weight:400;vertical-align:middle}
 .paper-expand[aria-expanded="true"]::before{content:"−"}
 .paper-expand:focus-visible{outline:2px solid #a15b49;outline-offset:3px}
-.paper-insights{grid-column:2;margin-top:10px;padding:0 0 2px 12px;border-left:2px solid #c9a896}
+.paper-insights{grid-column:2;margin-top:6px;padding:0 0 2px 10px;border-left:2px solid #c9a896}
 .paper-insights[hidden]{display:none}
-.paper-insights h4{margin:9px 0 3px;color:#8c5546;font:700 10px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase}
+.paper.has-insights .summary{display:none}
+.paper-insights h4{margin:7px 0 3px;color:#8c5546;font:700 10px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase}
 .paper-insights p{max-width:700px;margin:0;color:#65585f;font-size:13px;line-height:1.55}
+.extension-count{margin-left:auto;margin-right:12px;color:#81786d;font:400 11px/1.4 Arial,Helvetica,sans-serif}
 </style>
 </head>
 <body>
@@ -60,7 +67,7 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 <section class="topic" id="animation"><div class="topic-head"><span class="section-kicker">02 / CHARACTER ANIMATION</span><h2>Meta Motivo</h2><p class="topic-note">A behavioral foundation model for expressive, physics-based humanoid characters.</p></div><div class="items"><article class="paper"><div><h3>Zero-Shot Whole-Body Humanoid Control via Behavioral Foundation Models</h3><p class="summary">Uses forward-backward representations and motion data to prompt a physics-based humanoid character for motion tracking, pose reaching, and reward optimization.</p><div class="links"><a href="https://arxiv.org/abs/2504.11054">Paper</a><a href="https://github.com/facebookresearch/metamotivo">Code</a></div></div></article></div></section>
 <section class="topic" id="wbc"><div class="topic-head"><span class="section-kicker">03 / WHOLE-BODY CONTROL</span><h2>Generalist Humanoid Control</h2><p class="topic-note">Shared behavioral models for diverse whole-body tasks.</p></div><div class="items"><article class="paper"><div><h3>BFM-Zero: A Promptable Behavioral Foundation Model for Humanoid Control Using Unsupervised Reinforcement Learning</h3><p class="summary">Learns a shared latent space for motions, goals, and rewards, supporting promptable whole-body skills and real-world humanoid control.</p><div class="links"><a href="https://arxiv.org/abs/2511.04131">Paper</a><a href="https://github.com/LeCAR-Lab/BFM-Zero">Code</a><a href="https://lecar-lab.github.io/BFM-Zero/">Project</a></div></div></article><article class="paper"><div><h3>UFO: A General Unsupervised Reinforcement Learning Framework for Humanoid Control</h3><p class="summary">A general unsupervised RL framework for learning versatile humanoid behaviors from a shared latent representation.</p><div class="links"><a href="https://roboparty.github.io/UFO/assets/UFO.pdf">Paper</a><a href="https://github.com/Roboparty/UFO">Code</a><a href="https://roboparty.github.io/UFO/">Project</a></div></div></article></div></section>
 <section class="topic" id="discussion"><div class="topic-head"><span class="section-kicker">05 / DISCUSSION</span><h2>Reducing Zero-Shot Inference Suboptimality</h2><p class="topic-note">Improving zero-shot task inference in behavioral foundation models and optimizing latent sequences for motion tracking.</p></div><div class="items"><article class="paper"><div><h3>Task Inference Beyond Least Squares in Behavioral Foundation Models</h3><p class="summary">Revisits test-time task-vector inference: balancing reward reconstruction with successor-measure alignment reduces the suboptimality of retrieved zero-shot policies.</p><div class="links"><a href="https://arxiv.org/abs/2610.05350">Paper</a><a href="https://embodiedai-ntu.github.io/BLS">Project</a></div></div></article><article class="paper"><div><h3>BFMTrack: Latent Sequence Optimization for Physics-Based Motion Tracking with Behavioral Foundation Models</h3><p class="summary">Optimizes a sequence of behavioral latents with simulation rollouts and policy gradients, extending BFMs from time-invariant objectives to motion tracking.</p><div class="links"><a href="https://arxiv.org/abs/2606.25056">Paper</a></div></div></article></div></section>
-</main><footer class="wrap contact-footer"><div><strong>Contact</strong><p>A living map of unsupervised reinforcement learning and behavioral foundation models.</p></div><div class="contact-links"><a href="mailto:liyitang475@gmail.com">liyitang475@gmail.com</a><a href="https://liyitang22.github.io/">Personal Homepage</a></div></footer>
+</main><footer class="contact-footer"><div class="contact-intro"><span class="contact-label">GET IN TOUCH</span><strong>Contact</strong><p>A living map of unsupervised reinforcement learning and behavioral foundation models.</p></div><div class="contact-links"><a href="mailto:liyitang475@gmail.com"><span>Email</span><strong>liyitang475@gmail.com</strong></a><a href="https://liyitang22.github.io/"><span>Homepage</span><strong>liyitang22.github.io ↗</strong></a></div></footer>
 <script>document.addEventListener("DOMContentLoaded",()=>{const section=document.getElementById("applications");const discussion=document.getElementById("discussion");if(section&&discussion)discussion.before(section);document.querySelectorAll(".extension-swatch").forEach(button=>button.addEventListener("click",()=>{const target=document.getElementById(button.dataset.extensionTarget);if(!target)return;const wasOpen=button.getAttribute("aria-expanded")==="true";document.querySelectorAll(".extension-swatch").forEach(item=>item.setAttribute("aria-expanded","false"));document.querySelectorAll(".extension-panel").forEach(panel=>panel.hidden=true);if(!wasOpen){button.setAttribute("aria-expanded","true");target.hidden=false;}}));});</script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
@@ -126,10 +133,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(card.closest("#animation")||title.startsWith("Learning One Representation")||title.startsWith("BFM-Zero:"))return;
     const href=card.querySelector('.links a[href*="arxiv"]')?.href||"";
     const id=href.match(/\d{4}\.\d{5}/)?.[0];
-    const key=id||["UFO","InterEvolve","I-BFM","P-BFM","CrossBFM"].find(name=>title.startsWith(name));
+    const projectKey=["UFO","InterEvolve","I-BFM","P-BFM","CrossBFM"].find(name=>title.startsWith(name));
+    const key=projectKey||id;
     const data=byId[key];if(!data)return;
     const [kind,label,first,second]=data;
-    const button=document.createElement("button");button.type="button";button.className="paper-expand";button.textContent="Explore summary";button.title="Hover or select to expand";button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",`Expand ${title} summary`);
+    const button=document.createElement("button");button.type="button";button.className="paper-expand";button.textContent="Explore summary";button.title="Select to expand";button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",`Expand ${title} summary`);
     const panel=document.createElement("div");panel.className="paper-insights";panel.hidden=true;panel.id=`paper-insights-${index}`;button.setAttribute("aria-controls",panel.id);
     const firstHeading=document.createElement("h4");firstHeading.textContent=kind==="robot"?"New design":"Motivation";
     const firstText=document.createElement("p");firstText.textContent=first;
@@ -137,15 +145,15 @@ document.addEventListener("DOMContentLoaded",()=>{
     const secondText=document.createElement("p");secondText.textContent=second;
     panel.append(firstHeading,firstText,secondHeading,secondText);
     const setOpen=open=>{panel.hidden=!open;button.setAttribute("aria-expanded",String(open));};
+    card.classList.add("has-insights");
     button.addEventListener("click",()=>setOpen(panel.hidden));
-    card.addEventListener("pointerenter",event=>{if(event.pointerType==="mouse")setOpen(true);});
-    card.addEventListener("pointerleave",event=>{if(event.pointerType==="mouse")setOpen(false);});
     card.addEventListener("focusin",()=>setOpen(true));
     card.addEventListener("focusout",event=>{if(!card.contains(event.relatedTarget))setOpen(false);});
     card.append(button,panel);
   });
 });</script>
 <script>document.addEventListener("DOMContentLoaded",()=>{const navLink=document.querySelector('.nav a[href="#discussion"]');if(navLink)navLink.innerHTML="<b>05</b> Inference";const kicker=document.querySelector("#discussion .section-kicker");if(kicker)kicker.textContent="05 / INFERENCE";const extensionTitle=document.querySelector("#applications .topic-head h2");if(extensionTitle)extensionTitle.textContent="From Single-Robot WBC to ...";document.querySelector(".gallery-heading p")?.remove();});</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{const counts={"panel-interaction":"2 papers","panel-perception":"1 paper","panel-robots":"1 paper"};document.querySelectorAll(".extension-swatch").forEach(button=>{const count=document.createElement("span");count.className="extension-count";count.textContent=counts[button.dataset.extensionTarget]||"";button.append(count);});});</script>
 </body>
 </html>
 <section class="topic" id="applications"><div class="topic-head"><span class="section-kicker">04 / EXTENSIONS</span><h2>From Single-Robot Locomotion to ...</h2><p class="topic-note">Behavior across contact, perception, and embodiments.</p></div><div class="extension-explorer"><div class="extension-group"><button class="extension-swatch interaction" type="button" data-extension-target="panel-interaction" aria-expanded="false" aria-controls="panel-interaction">Interaction</button><div class="extension-panel" id="panel-interaction" hidden><article class="paper" id="interevolve"><div><h3>InterEvolve: Test-Time Evolution of Reward Programs for Humanoid Loco-Manipulation</h3><p class="summary">A project exploring interactive humanoid behavior and evolution.</p><div class="links"><a href="https://sirui-xu.github.io/InterEvolve/">Project</a></div></div></article><article class="paper" id="ibfm"><div><h3>I-BFM: Reward-Conditioned Robust Humanoid Interaction via Unsupervised Reinforcement Learning</h3><p class="summary">Learns a shared representation of humanoid, object, and contact dynamics for robust interaction and task chaining.</p><div class="links"><a href="https://arxiv.org/abs/2610.06129">Paper</a><a href="https://github.com/Roboparty/I-BFM-Code">Code</a><a href="https://iamhardworking.github.io/I-BFM/">Project</a></div></div></article></div></div><div class="extension-group"><button class="extension-swatch perception" type="button" data-extension-target="panel-perception" aria-expanded="false" aria-controls="panel-perception">Perception</button><div class="extension-panel" id="panel-perception" hidden><article class="paper" id="pbfm"><div><h3>P-BFM: Perceptive Behavioral Foundation Models for Humanoid Control via Unsupervised Reinforcement Learning</h3><p class="summary">Separates terrain-invariant behavioral intent from terrain-conditioned realization for adaptive humanoid control.</p><div class="links"><a href="https://github.com/Roboparty/P-BFM">Code</a><a href="https://roboparty.github.io/P-BFM/">Project</a></div></div></article></div></div><div class="extension-group"><button class="extension-swatch robots" type="button" data-extension-target="panel-robots" aria-expanded="false" aria-controls="panel-robots">Multiple Robots</button><div class="extension-panel" id="panel-robots" hidden><article class="paper" id="crossbfm"><div><h3>CrossBFM: Distilling a Shared Latent Behavior Space Across Humanoid Embodiments</h3><p class="summary">Distills a shared behavior latent space across humanoid embodiments, aiming to reduce training cost and transfer prompted behaviors to different robots.</p><div class="links"><a href="https://arxiv.org/abs/2609.38087">Paper</a><a href="https://github.com/dotandung/crossbfm">Code</a><a href="https://dotandung.github.io/CrossBFM/">Project</a></div></div></article></div></div></div></section>
