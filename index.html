@@ -124,12 +124,12 @@ document.addEventListener("DOMContentLoaded",()=>{
       "Introduces a humanoid behavioral foundation model in physics simulation."
     ]],
     "2511.04131":["robot","New design",[
-      "Uses off-policy forward-backward learning to build a reusable space of whole-body skills.",
-      "Combines reward shaping, domain randomization, and history-aware learning to help transfer skills from simulation to hardware."
+      "Scales training across thousands of parallel simulated environments, using a large replay buffer to learn efficiently.",
+      "Uses 40 several-minute LAFAN1 motion clips retargeted to the G1. A motion-style discriminator guides exploration toward natural movement without limiting the robot to replaying those clips.",
+      "Adds domain randomization and history-based control to help skills transfer from simulation to hardware."
     ],[
-      "Demonstrates unsupervised behavioral-foundation-model control on a real Unitree G1.",
-      "Supports motion tracking, goal reaching, and reward-based control, with few-shot latent adaptation.",
-      "Tests recovery and robustness under real-world disturbances."
+      "State-level (single-pose) adaptation: 20 CEM rounds tune the latent prompt, not the network. With a 4 kg torso load, the real G1 improves from falling within 5 seconds to holding a one-leg stance for over 15 seconds.",
+      "Trajectory adaptation: in simulation, 2,048 samples and 6 optimization rounds tune a sequence of prompts for a leap under changed ground friction, reducing tracking error by about 29%."
     ]],
     "2209.14935":["theory","Motivation","Zero-shot RL promises instant task solving after reward-free pretraining, but its practical viability and relation to successor features needed systematic study.","Compares successor-feature and forward-backward methods across offline benchmarks; FB performs consistently well without requiring handcrafted state features."],
     "2602.01962":["theory","Motivation","Zero-shot policies derived from offline data face distribution shift when the desired task differs from the behavior data.","Connects successor measures to stationary density ratios, enabling task-specific off-policy correction without additional training."],
@@ -182,9 +182,9 @@ document.addEventListener("DOMContentLoaded",()=>{
       "Demonstrates zero-shot transfer to a Unitree G1 with onboard depth sensing."
     ]],
     "CrossBFM":["robot","New design",[
-      "Uses corresponding motions retargeted across robots to connect their different bodies.",
-      "Maps each robot into a shared behavior space, without giving the shared encoder robot-specific parameters.",
-      "Trains each robot to follow prompts from that common space."
+      "Uses the pretrained G1 behavior space as a common reference, with matching motions retargeted onto other robot bodies.",
+      "Trains a shared encoder to map each robot's observations into that space, without robot-specific encoder parameters.",
+      "Then trains a controller for each robot to follow prompts from the same shared space."
     ],[
       "Reuses behavior prompts across three humanoid embodiments for tracking, reaching, and reward-based tasks.",
       "Tests transfer to a similar robot not seen during training.",
