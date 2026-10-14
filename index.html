@@ -113,6 +113,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 <script>document.addEventListener("DOMContentLoaded",()=>{
   const byId={
     "2504.07896":["theory","Motivation","Zero-shot BFM policies can still fall short of a requested task, while full retraining defeats the purpose of reusable pretraining.","Searches directly in the pretrained latent space to adapt quickly, improving task performance while limiting regression on existing behaviors."],
+    "2504.11054":["robot","New design","Combines forward-backward representations with conditional-policy regularization, using unlabeled motion-capture data to ground policy coverage in human-like behaviors.","The first humanoid behavioral foundation model supports zero-shot motion tracking, goal reaching, and reward optimization; follow-on work explores fast adaptation in the learned latent space."],
+    "2511.04131":["robot","New design","Builds on off-policy FB actor-critic learning, adding reward shaping, domain randomization, and history-dependent asymmetric learning to bridge the sim-to-real gap.","First demonstration of off-policy unsupervised RL for real-humanoid behavioral foundation control, transferring whole-body skills to a Unitree G1 with few-shot optimization-based adaptation."],
     "2209.14935":["theory","Motivation","Zero-shot RL promises instant task solving after reward-free pretraining, but its practical viability and relation to successor features needed systematic study.","Compares successor-feature and forward-backward methods across offline benchmarks; FB performs consistently well without requiring handcrafted state features."],
     "2602.01962":["theory","Motivation","Zero-shot policies derived from offline data face distribution shift when the desired task differs from the behavior data.","Connects successor measures to stationary density ratios, enabling task-specific off-policy correction without additional training."],
     "2602.06769":["theory","Motivation","Standard FB methods target additive rewards, excluding objectives such as distribution matching and pure exploration.","Introduces a soft FB formulation and latent-space search to optimize broader differentiable utility functions from offline data."],
@@ -130,7 +132,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   const cards=[...document.querySelectorAll(".paper")];
   cards.forEach((card,index)=>{
     const title=card.querySelector("h3")?.textContent.trim()||"";
-    if(card.closest("#animation")||title.startsWith("Learning One Representation")||title.startsWith("BFM-Zero:"))return;
+    if(title.startsWith("Learning One Representation"))return;
     const href=card.querySelector('.links a[href*="arxiv"]')?.href||"";
     const id=href.match(/\d{4}\.\d{5}/)?.[0];
     const projectKey=["UFO","InterEvolve","I-BFM","P-BFM","CrossBFM"].find(name=>title.startsWith(name));
