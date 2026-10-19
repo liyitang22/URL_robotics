@@ -56,8 +56,6 @@ footer{color:#77796f;border-top:1px solid #d8d3c6}footer:after{content:""}
 .paper.has-insights .summary{display:none}
 .paper-insights h4{margin:7px 0 3px;color:#8c5546;font:700 10px/1.4 Arial,Helvetica,sans-serif;text-transform:uppercase}
 .paper-insights p{max-width:700px;margin:0;color:#65585f;font-size:13px;line-height:1.55}
-.paper-insights ul{max-width:760px;margin:0;padding-left:18px;color:#65585f;font-size:13px;line-height:1.55}
-.paper-insights li+li{margin-top:3px}
 .extension-count{margin-left:auto;margin-right:12px;color:#81786d;font:400 11px/1.4 Arial,Helvetica,sans-serif}
 </style>
 </head>
@@ -115,22 +113,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 <script>document.addEventListener("DOMContentLoaded",()=>{
   const byId={
     "2504.07896":["theory","Motivation","Zero-shot BFM policies can still fall short of a requested task, while full retraining defeats the purpose of reusable pretraining.","Searches directly in the pretrained latent space to adapt quickly, improving task performance while limiting regression on existing behaviors."],
-    "2504.11054":["robot","New design",[
-      "Learns from motion-capture clips without needing action labels.",
-      "Uses one shared latent space to connect body states, motions, and rewards.",
-      "Regularizes the policy toward the motion data so it can produce a broad range of human-like behavior."
-    ],[
-      "One model can track a motion, reach a target pose, or optimize a new reward without training a separate policy for each task.",
-      "Introduces a humanoid behavioral foundation model in physics simulation."
-    ]],
-    "2511.04131":["robot","New design",[
-      "Scales training across thousands of parallel simulated environments, using a large replay buffer to learn efficiently.",
-      "Uses 40 several-minute LAFAN1 motion clips retargeted to the G1. A motion-style discriminator guides exploration toward natural movement without limiting the robot to replaying those clips.",
-      "Adds domain randomization and history-based control to help skills transfer from simulation to hardware."
-    ],[
-      "State-level (single-pose) adaptation: 20 CEM rounds tune the latent prompt, not the network. With a 4 kg torso load, the real G1 improves from falling within 5 seconds to holding a one-leg stance for over 15 seconds.",
-      "Trajectory adaptation: in simulation, 2,048 samples and 6 optimization rounds tune a sequence of prompts for a leap under changed ground friction, reducing tracking error by about 29%."
-    ]],
+    "2504.11054":["robot","New design","Learns from unlabeled motion-capture clips and uses a shared latent space to connect body states, motions, and rewards; a motion-style regularizer encourages varied, human-like behavior.","One model can track a motion, reach a target pose, or optimize a new reward without training a separate policy for each task. This is demonstrated in physics simulation."],
+    "2511.04131":["robot","New design","Scales training across thousands of parallel simulated environments with a large replay buffer. It uses 40 several-minute LAFAN1 motion clips retargeted to the G1 to guide exploration toward natural movement, while still allowing the robot to discover behaviors beyond replaying those clips; domain randomization and history-based control support transfer to hardware.","For a single target pose, 20 CEM rounds tune the latent prompt, not the network: with a 4 kg torso load, the real G1 goes from falling within 5 seconds to holding a one-leg stance for over 15 seconds. For a motion trajectory, 2,048 samples and 6 optimization rounds reduce leap-tracking error by about 29% in simulation."],
     "2209.14935":["theory","Motivation","Zero-shot RL promises instant task solving after reward-free pretraining, but its practical viability and relation to successor features needed systematic study.","Compares successor-feature and forward-backward methods across offline benchmarks; FB performs consistently well without requiring handcrafted state features."],
     "2602.01962":["theory","Motivation","Zero-shot policies derived from offline data face distribution shift when the desired task differs from the behavior data.","Connects successor measures to stationary density ratios, enabling task-specific off-policy correction without additional training."],
     "2602.06769":["theory","Motivation","Standard FB methods target additive rewards, excluding objectives such as distribution matching and pure exploration.","Introduces a soft FB formulation and latent-space search to optimize broader differentiable utility functions from offline data."],
@@ -138,58 +122,12 @@ document.addEventListener("DOMContentLoaded",()=>{
     "2603.15857":["theory","Motivation","Complex BFM objectives can be costly and depend on adequate dataset coverage; plain latent next-state prediction may collapse feature diversity.","Adds orthogonality regularization to latent dynamics prediction, preserving diverse features and matching or surpassing more complex methods."],
     "2606.01123":["theory","Motivation","Offline preference RL usually learns an explicit reward or preference model, while reward-free representations lack a task signal at inference.","Combines FB successor-measure representations with contrastive preference learning to infer tasks directly and improve preference efficiency."],
     "2610.05350":["theory","Motivation","Least-squares task-vector inference can leave zero-shot BFM policies noticeably below their attainable performance.","Balances reward reconstruction with successor-measure alignment to reduce inference suboptimality."],
-    "2606.25056":["robot","New design",[
-      "Represents a motion with a sequence of behavior latents, rather than one fixed latent for the whole motion.",
-      "Uses simulated rollouts and policy updates to improve that latent sequence.",
-      "Correlated updates keep neighboring parts of the motion coordinated."
-    ],[
-      "Tracks both full motions and sparse keyframes.",
-      "Reduces the need to hand-design a tracking reward for each motion."
-    ]],
-    "UFO":["robot","New design",[
-      "Provides a reusable framework for learning and deploying unsupervised humanoid skills.",
-      "Its TeCH method learns how reachable one state is from another, then uses that structure to guide the robot toward goals.",
-      "Combines motion sources so new skills can be added while retaining previously learned behaviors."
-    ],[
-      "Supports motion tracking, goal-reaching, and reward-driven control across humanoid setups.",
-      "Demonstrates robust real-world teleoperation, including under external pushes."
-    ]],
-    "InterEvolve":["robot","New design",[
-      "Keeps the pretrained motion controller fixed; it changes the task instructions instead of retraining the controller.",
-      "Describes a task as stages, each with a reward and a clear condition for completion.",
-      "Uses trial feedback to revise the stages and tune their settings, then checks candidates in simulation."
-    ],[
-      "Turns a task goal into multi-step humanoid interactions such as pushing or carrying.",
-      "Can improve a task program through repeated trials without changing the underlying controller.",
-      "Demonstrates evolved skills on a Unitree G1 using onboard perception."
-    ]],
-    "I-BFM":["robot","New design",[
-      "Learns from the coupled motion of the humanoid, objects, and physical contact.",
-      "Uses a shared forward-backward representation and policy instead of a separate policy for every interaction.",
-      "Combines short-term interaction cues with longer-term goals."
-    ],[
-      "One model supports object tasks such as carrying, pushing, and kicking, alongside tracking and reaching.",
-      "Can chain interaction steps and recover from large errors, including falls.",
-      "Demonstrates object interaction on a real Unitree G1."
-    ]],
-    "P-BFM":["robot","New design",[
-      "Separates what the robot should do (intent) from how it should move on the current terrain.",
-      "Uses depth input so the controller can adjust its steps and posture to the ground ahead.",
-      "Adds direct heading and speed instructions to steer the intended behavior."
-    ],[
-      "The same policy adapts its footholds, step height, and posture across terrain.",
-      "Supports motion tracking, pose reaching, reward control, and teleoperation.",
-      "Demonstrates zero-shot transfer to a Unitree G1 with onboard depth sensing."
-    ]],
-    "CrossBFM":["robot","New design",[
-      "Uses the pretrained G1 behavior space as a common reference, with matching motions retargeted onto other robot bodies.",
-      "Trains a shared encoder to map each robot's observations into that space, without robot-specific encoder parameters.",
-      "Then trains a controller for each robot to follow prompts from the same shared space."
-    ],[
-      "Reuses behavior prompts across three humanoid embodiments for tracking, reaching, and reward-based tasks.",
-      "Tests transfer to a similar robot not seen during training.",
-      "Demonstrates cross-robot behavior transfer on real hardware."
-    ]]
+    "2606.25056":["robot","New design","Represents a changing motion with a sequence of behavior prompts rather than one fixed prompt, then improves that sequence through simulated rollouts while keeping neighboring parts coordinated.","Tracks both full motions and sparse keyframes, with less need to hand-design a tracking reward for every motion."],
+    "UFO":["robot","New design","UFO reduces forward-backward training to 6–8 hours while reporting better performance, and adds TeCH, which learns a latent space where distance reflects how long it takes to move between states.","Its extensible framework supports different robots and multi-dataset training, adding skills without overwriting earlier ones; the project reports 2–3 hours of training per robot and demonstrates real-world teleoperation that withstands external disturbances."],
+    "InterEvolve":["robot","New design","Keeps the pretrained controller fixed and represents a task as stages with rewards and clear completion conditions. Trial feedback revises the stages and tunes their settings, with candidates checked in simulation.","Turns task goals into multi-step interactions such as pushing or carrying, then improves them without retraining the controller; evolved skills are demonstrated on a Unitree G1 with onboard perception."],
+    "I-BFM":["robot","New design","Learns one shared forward-backward representation from the coupled motion of the humanoid, objects, and contact, combining short-term interaction cues with longer-term goals.","One model handles object tasks such as carrying, pushing, and kicking, as well as tracking and reaching. It can chain interactions and recover from large errors, and is demonstrated on a real Unitree G1."],
+    "P-BFM":["robot","New design","Separates the intended behavior from how the robot should realize it on the current terrain. Depth input guides footholds and posture, while heading and speed commands steer the motion.","One policy adapts its steps and posture across terrain and supports tracking, pose reaching, reward control, and teleoperation; it transfers zero-shot to a Unitree G1 using onboard depth."],
+    "CrossBFM":["robot","New design","Retargets matching motions onto different robot bodies and trains a shared encoder to map their observations into the pretrained G1 behavior space, without robot-specific encoder parameters. Each robot then gets a controller that follows prompts from this same space.","Shared prompts support tracking, reaching, and reward-based tasks across three humanoid embodiments, including transfer tests on an unseen robot and real hardware."]
   };
   const cards=[...document.querySelectorAll(".paper")];
   cards.forEach((card,index)=>{
@@ -204,13 +142,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     const button=document.createElement("button");button.type="button";button.className="paper-expand";button.textContent="Explore summary";button.title="Select to expand";button.setAttribute("aria-expanded","false");button.setAttribute("aria-label",`Expand ${title} summary`);
     const panel=document.createElement("div");panel.className="paper-insights";panel.hidden=true;panel.id=`paper-insights-${index}`;button.setAttribute("aria-controls",panel.id);
     const firstHeading=document.createElement("h4");firstHeading.textContent=kind==="robot"?"New design":"Motivation";
-    const renderContent=content=>{
-      if(!Array.isArray(content)){const paragraph=document.createElement("p");paragraph.textContent=content;return paragraph;}
-      const list=document.createElement("ul");content.forEach(point=>{const item=document.createElement("li");item.textContent=point;list.append(item);});return list;
-    };
-    const firstText=renderContent(first);
+    const firstText=document.createElement("p");firstText.textContent=first;
     const secondHeading=document.createElement("h4");secondHeading.textContent=kind==="robot"?"New capability":"Results";
-    const secondText=renderContent(second);
+    const secondText=document.createElement("p");secondText.textContent=second;
     panel.append(firstHeading,firstText,secondHeading,secondText);
     const setOpen=open=>{panel.hidden=!open;button.setAttribute("aria-expanded",String(open));};
     card.classList.add("has-insights");
