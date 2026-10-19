@@ -151,8 +151,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     const setOpen=open=>{panel.hidden=!open;button.setAttribute("aria-expanded",String(open));};
     card.classList.add("has-insights");
     button.addEventListener("click",()=>setOpen(panel.hidden));
-    card.addEventListener("focusin",()=>setOpen(true));
-    card.addEventListener("focusout",event=>{if(!card.contains(event.relatedTarget))setOpen(false);});
     card.append(button,panel);
   });
 });</script>
